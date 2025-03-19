@@ -9,8 +9,6 @@ class ProbabilityService:
     # assumes playerName has been formatted properly and has whitespace stripped
     def calculate_winning_probability(self, playerName = None, min_at_bats=2, max_at_bats=5, prob_single = None, prob_extra_base_hit = None):
         # Validate min and max at bats
-        print("SINGLE", prob_single)
-        print("DOUBLE", prob_extra_base_hit)
         if playerName is None: ## need a player to retrieve stats
             return None
         
@@ -25,7 +23,7 @@ class ProbabilityService:
         params = {'personIds':player_split_stats_id, 'hydrate':'stats(group=[hitting],type=[statSplits],sitCodes=[vr,vl])'}
         paramsl10 = {'personIds':player_split_stats_id, 'hydrate':'stats(group=[hitting],type=[lastXgames],limit=1)'}
         people = statsapi.get('people',paramsl10)
-        print("HMMMM", people)
+    
         num_player_stats = len(player_stats['stats'])
         
         if num_player_stats < 1:

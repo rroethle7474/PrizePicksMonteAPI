@@ -467,8 +467,6 @@ def try_rag():
     logger.info(f"Fetching weather reports for {todayDate}")
     t = weather_service.get_weather_reports_by_date(todayDate)
     weather_matchups_dicts = [map_entity_to_dto(weather_matchup).to_dict() for weather_matchup in t]
-    # determine when/how often to fetch weather data and if it will change
-    print("T", t)
     
     return jsonify({"weather_matchups": weather_matchups_dicts})
 
@@ -477,12 +475,9 @@ def try_rag():
 def get_mlb_daily_weather():
     # Assuming the API requires a date, format today's date as needed. If not, remove this part.
     todayDate = datetime.now()
-    print ("TODAY DATE", todayDate)
     logger.info(f"Fetching weather reports for {todayDate}")
     t = weather_service.get_weather_reports_by_date(todayDate)
     weather_matchups_dicts = [map_entity_to_dto(weather_matchup).to_dict() for weather_matchup in t]
-    # determine when/how often to fetch weather data and if it will change
-    print("T", t)
     
     return jsonify({"weather_matchups": weather_matchups_dicts})
     # existing_weather_matchups = cache.get('weather_matchups')
