@@ -51,6 +51,7 @@ The application uses SQLAlchemy as an ORM with the following configuration: (cur
 app.config['SQLALCHEMY_DATABASE_URI'] = r''  # Connection string needs to be configured
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 ```
+The authentication on my local machine is using version 18 (ODBC) and Windows Authentication to login to SSMS database.
 
 ### Database Considerations
 1. **The database must be created manually** - The application does not automatically create the database on startup

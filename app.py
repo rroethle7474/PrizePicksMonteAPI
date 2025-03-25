@@ -4,6 +4,11 @@ from flask_cors import CORS
 import statistics
 import requests
 from datetime import datetime
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 from models.bet_options import BetOptions
 from models.winning_bet import WinningBet
@@ -28,8 +33,8 @@ from models.MLBWeatherReportMatchup import DailyMLBWeatherReport
 
 app = Flask(__name__)
 CORS(app)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = r''
+print("SQLALCHEMY_DATABASE_URI", os.getenv('SQLALCHEMY_DATABASE_URI'))
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI', '')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #TrustServerCertificate for driver 18
 #Trusted_Connection=yes for driver 17
@@ -300,7 +305,7 @@ def get_mlb_games():
     # If the API requires a date, add it to the querystring: {"date": today}
     querystring = {"date": today, "league": "1", "season": "2024", "timezone": "America/Chicago", "team": "20"}
     headers = {
-        "X-RapidAPI-Key": "",
+        "X-RapidAPI-Key": os.getenv('X_RAPIDAPI_KEY', ''),
         "X-RapidAPI-Host": "api-baseball.p.rapidapi.com"
     }
     
